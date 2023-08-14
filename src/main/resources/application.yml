@@ -1,5 +1,8 @@
+# Spring Web config
 server:
   port: 80
+  servlet:
+    context-path: /shop_mall_project
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,3 +22,14 @@ spring:
   mvc:
     view:
       prefix: /
+# Logback config
+logging:
+  level:
+    com:
+      idv:
+        shop_mall_project: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] [%line] %msg%n'
+  file:
+    path: ./
