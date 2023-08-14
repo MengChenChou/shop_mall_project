@@ -1,0 +1,21 @@
+server:
+  port: 80
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/JAVA_FRAMEWORK?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: "Aa12345"
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  # JPA config
+  jpa:
+    show-sql: true
+    # Hibernate config
+    database-platform: org.hibernate.dialect.MySQLDialect
+  # Spring MVC config
+  mvc:
+    view:
+      prefix: /
