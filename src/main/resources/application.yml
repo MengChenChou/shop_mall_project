@@ -22,6 +22,8 @@ spring:
   mvc:
     view:
       prefix: /
+    pathmatch:
+      matching-strategy: ant_path_matcher
 # Logback config
 logging:
   level:
@@ -33,3 +35,4 @@ logging:
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] [%line] %msg%n'
   file:
     path: ./
+
