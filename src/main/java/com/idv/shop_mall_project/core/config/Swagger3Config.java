@@ -3,8 +3,10 @@ package com.idv.shop_mall_project.core.config;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
 import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
 
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
  * @author RickChou
  * @create 2023-08-18 下午 08:12
  */
+@Configuration
+@EnableOpenApi
 public class Swagger3Config {
     @Bean
     public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
@@ -34,6 +38,7 @@ public class Swagger3Config {
                         .filter(mapping -> mapping.getPatternParser() == null)
                         .collect(Collectors.toList());
                 mappings.clear();
+
                 mappings.addAll(copy);
             }
 
