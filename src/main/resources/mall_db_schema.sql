@@ -1,7 +1,7 @@
 -- A-創表
 -- CREATE SCHEMA `shop_mall_db`;
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_admin_user` (
+CREATE TABLE `admin_user` (
   `admin_user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '管理員id',
   `login_user_name` varchar(50) NOT NULL COMMENT '管理員登入名稱',
   `login_password` varchar(50) NOT NULL COMMENT '管理員登入密碼',
@@ -9,14 +9,14 @@ CREATE TABLE `tb_mall_admin_user` (
   `locked` tinyint DEFAULT '0' COMMENT '是否鎖定 0未鎖定 1已鎖定無法登入',
   PRIMARY KEY (`admin_user_id`)
 );
-INSERT INTO `tb_mall_admin_user` (`admin_user_id`, `login_user_name`, `login_password`, `nick_name`, `locked`)
+INSERT INTO `admin_user` (`admin_user_id`, `login_user_name`, `login_password`, `nick_name`, `locked`)
 VALUES
 	(1,'admin','e10adc3949ba59abbe56e057f20f883e','十三',0),
 	(2,'newbee-admin1','e10adc3949ba59abbe56e057f20f883e','新蜂01',0),
 	(3,'newbee-admin2','e10adc3949ba59abbe56e057f20f883e','新蜂02',0);
 
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_carousel` (
+CREATE TABLE `carousel` (
   `carousel_id` int NOT NULL AUTO_INCREMENT COMMENT '首頁輪播圖主鍵id',
   `carousel_url` varchar(100) NOT NULL DEFAULT '' COMMENT '輪播圖',
   `redirect_url` varchar(100) NOT NULL DEFAULT '''##''' COMMENT '典籍後跳轉的地址(默認不跳轉)',
@@ -29,7 +29,7 @@ CREATE TABLE `tb_mall_carousel` (
   PRIMARY KEY (`carousel_id`)
 );
 
-INSERT INTO `tb_mall_carousel` (`carousel_id`, `carousel_url`, `redirect_url`, `carousel_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
+INSERT INTO `carousel` (`carousel_id`, `carousel_url`, `redirect_url`, `carousel_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
 VALUES
 	(1,'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner2.jpg','##',200,1,'2019-08-23 17:50:45',0,'2019-11-10 00:23:01',0),
 	(2,'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner1.png','##',13,0,'2019-11-29 00:00:00',0,'2019-11-29 00:00:00',0),
@@ -38,7 +38,7 @@ VALUES
 	(6,'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner1.png','##',101,1,'2019-09-19 23:37:40',0,'2019-11-07 00:15:52',0),
 	(7,'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner2.png','##',99,1,'2019-09-19 23:37:58',0,'2019-10-22 00:15:01',0);
  -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-CREATE TABLE `tb_mall_goods_category` (
+CREATE TABLE `goods_category` (
   `category_id` bigint NOT NULL AUTO_INCREMENT COMMENT '分類id',
   `category_level` tinyint NOT NULL DEFAULT '0' COMMENT '分類級別(1-一級分類 2-二級分類 3-三級分類)',
   `parent_id` bigint NOT NULL DEFAULT '0' COMMENT '父分類id',
@@ -51,7 +51,7 @@ CREATE TABLE `tb_mall_goods_category` (
   `update_user` int DEFAULT '0' COMMENT '修改者id',
   PRIMARY KEY (`category_id`)
 );    
-INSERT INTO `tb_mall_goods_category` (`category_id`, `category_level`, `parent_id`, `category_name`, `category_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
+INSERT INTO `goods_category` (`category_id`, `category_level`, `parent_id`, `category_name`, `category_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
 VALUES
 	(15,1,0,'家电 数码 手机',100,0,'2019-09-11 18:45:40',0,'2019-11-20 23:18:13',0),
 	(16,1,0,'女装 男装 穿搭',99,0,'2019-09-11 18:46:07',0,'2019-11-20 23:18:20',0),
@@ -156,7 +156,7 @@ VALUES
 	(115,2,65,'玩具',0,0,'2019-11-28 20:24:58',0,'2019-11-28 20:24:58',0),
 	(116,3,115,'机器人',0,0,'2019-11-28 20:25:16',0,'2019-11-28 20:25:16',0);
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_goods_info` (
+CREATE TABLE `goods_info` (
   `goods_id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '商品表主键id',
   `goods_name` varchar(200) NOT NULL DEFAULT '' COMMENT '商品名',
   `goods_intro` varchar(200) NOT NULL DEFAULT '' COMMENT '商品簡介',
@@ -175,7 +175,7 @@ CREATE TABLE `tb_mall_goods_info` (
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品修改時間',
   PRIMARY KEY (`goods_id`)
 );
-INSERT INTO `tb_mall_goods_info` (`goods_id`, `goods_name`, `goods_intro`, `goods_category_id`, `goods_cover_img`, `goods_carousel`, `goods_detail_content`, `original_price`, `selling_price`, `stock_num`, `tag`, `goods_sell_status`, `create_user`, `create_time`, `update_user`, `update_time`)
+INSERT INTO `goods_info` (`goods_id`, `goods_name`, `goods_intro`, `goods_category_id`, `goods_cover_img`, `goods_carousel`, `goods_detail_content`, `original_price`, `selling_price`, `stock_num`, `tag`, `goods_sell_status`, `create_user`, `create_time`, `update_user`, `update_time`)
 VALUES
 	(10003,'无印良品 MUJI 基础润肤化妆水','滋润型 400ml',0,'/goods-img/87446ec4-e534-4b49-9f7d-9bea34665284.jpg','/goods-img/87446ec4-e534-4b49-9f7d-9bea34665284.jpg','商品介绍加载中...',100,100,1000,'',1,0,'2019-09-18 13:18:47',0,'2019-09-18 13:18:47'),
 	(10004,'无印良品 MUJI 柔和洁面泡沫','120g',0,'/goods-img/45854bdd-2ca5-423c-a609-3d336d9322b4.jpg','/goods-img/45854bdd-2ca5-423c-a609-3d336d9322b4.jpg','商品介绍加载中...',45,45,999,'',0,0,'2019-09-18 13:18:47',0,'2019-09-18 13:18:47'),
@@ -754,7 +754,7 @@ VALUES
 	(10902,'华为 HUAWEI P40 冰霜银 全网通5G手机','麒麟990 5G SoC芯片 5000万超感知徕卡三摄 30倍数字变焦 6GB+128GB',46,'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/p40-silver.png','https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/p40-silver.png','<img src=\"https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/p40-detail.jpg\" alt=\"\" />',4399,4299,2000,'超感知影像',0,0,'2020-03-27 10:07:37',0,'2020-05-15 17:18:30');
 
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_index_config` (
+CREATE TABLE `index_config` (
   `config_id` bigint NOT NULL AUTO_INCREMENT COMMENT '首頁配置项主键id',
   `config_name` varchar(50) NOT NULL DEFAULT '' COMMENT '顯示字符(配置搜索時不可為空，其他可為空)',
   `config_type` tinyint NOT NULL DEFAULT '0' COMMENT '1-搜索框熱搜 2-搜索下拉框熱搜 3-(首頁)熱銷商品 4-(首頁)新品上線 5-(首頁)為你推薦',
@@ -768,7 +768,7 @@ CREATE TABLE `tb_mall_index_config` (
   `update_user` int DEFAULT '0' COMMENT '修改者id',
   PRIMARY KEY (`config_id`)
 );
-INSERT INTO `tb_mall_index_config` (`config_id`, `config_name`, `config_type`, `goods_id`, `redirect_url`, `config_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
+INSERT INTO `index_config` (`config_id`, `config_name`, `config_type`, `goods_id`, `redirect_url`, `config_rank`, `is_deleted`, `create_time`, `create_user`, `update_time`, `update_user`)
 VALUES
 	(1,'热销商品 iPhone XR',3,10284,'##',10,0,'2019-09-18 17:04:56',0,'2019-09-18 17:04:56',0),
 	(2,'热销商品 华为 Mate20',3,10779,'##',100,0,'2019-09-18 17:05:27',0,'2019-09-18 17:05:27',0),
@@ -800,7 +800,7 @@ VALUES
 	(28,'rqwer',3,23,'##',12,1,'2019-10-25 00:41:33',0,'2019-10-25 00:44:16',0),
 	(29,'新品上线 华为 matex',4,10901,'##',12,0,'2019-12-14 15:53:34',0,'2019-12-14 15:53:34',0);
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_order` (
+CREATE TABLE `order` (
   `order_id` bigint NOT NULL AUTO_INCREMENT COMMENT '訂單表主键id',
   `order_no` varchar(20) NOT NULL DEFAULT '' COMMENT '訂單號',
   `user_id` bigint NOT NULL DEFAULT '0' COMMENT '用户主键id',
@@ -816,7 +816,7 @@ CREATE TABLE `tb_mall_order` (
   PRIMARY KEY (`order_id`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_order_address` (
+CREATE TABLE `order_address` (
   `order_id` bigint NOT NULL,
   `user_name` varchar(30) NOT NULL DEFAULT '' COMMENT '收貨人姓名',
   `user_phone` varchar(11) NOT NULL DEFAULT '' COMMENT '收貨人手機號',
@@ -827,7 +827,7 @@ CREATE TABLE `tb_mall_order_address` (
   PRIMARY KEY (`order_id`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_order_item` (
+CREATE TABLE `order_item` (
   `order_item_id` bigint NOT NULL AUTO_INCREMENT COMMENT '訂單關聯購物项主键id',
   `order_id` bigint NOT NULL DEFAULT '0' COMMENT '訂單主键id',
   `goods_id` bigint NOT NULL DEFAULT '0' COMMENT '關聯商品id',
@@ -839,7 +839,7 @@ CREATE TABLE `tb_mall_order_item` (
   PRIMARY KEY (`order_item_id`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_shopping_cart_item` (
+CREATE TABLE `shopping_cart_item` (
   `cart_item_id` bigint NOT NULL AUTO_INCREMENT COMMENT '購物項主键id',
   `user_id` bigint NOT NULL COMMENT '用户主键id',
   `goods_id` bigint NOT NULL DEFAULT '0' COMMENT '關聯商品id',
@@ -850,7 +850,7 @@ CREATE TABLE `tb_mall_shopping_cart_item` (
   PRIMARY KEY (`cart_item_id`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_user` (
+CREATE TABLE `user` (
   `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户主键id',
   `nick_name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户暱稱',
   `login_name` varchar(11) NOT NULL DEFAULT '' COMMENT '登陸名稱(默認為手機號)',
@@ -861,12 +861,12 @@ CREATE TABLE `tb_mall_user` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '註冊時間',
   PRIMARY KEY (`user_id`)
 );
-INSERT INTO `tb_mall_user` (`user_id`, `nick_name`, `login_name`, `password_md5`, `introduce_sign`, `is_deleted`, `locked_flag`, `create_time`)
+INSERT INTO `user` (`user_id`, `nick_name`, `login_name`, `password_md5`, `introduce_sign`, `is_deleted`, `locked_flag`, `create_time`)
 VALUES
 	(1,'Rick','13700002703','e10adc3949ba59abbe56e057f20f883e','努力不一定成功，但不努力絕對不會成功',0,0,'2020-05-22 08:44:57'),
 	(6,'Eric','13711113333','e10adc3949ba59abbe56e057f20f883e','测试用戶eric',0,0,'2020-05-22 08:44:57');
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_user_address` (
+CREATE TABLE `user_address` (
   `address_id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` bigint NOT NULL DEFAULT '0' COMMENT '用户主键id',
   `user_name` varchar(30) NOT NULL DEFAULT '' COMMENT '收貨人姓名',
@@ -882,7 +882,7 @@ CREATE TABLE `tb_mall_user_address` (
   PRIMARY KEY (`address_id`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CREATE TABLE `tb_mall_user_token` (
+CREATE TABLE `user_token` (
   `user_id` bigint NOT NULL COMMENT '用户主键id',
   `token` varchar(32) NOT NULL COMMENT 'token值(32位字符串)',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改時間',
@@ -891,7 +891,7 @@ CREATE TABLE `tb_mall_user_token` (
   UNIQUE KEY `uq_token` (`token`)
 );
 -- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-CREATE TABLE `tb_mall_admin_user_token` (
+CREATE TABLE `admin_user_token` (
   `admin_user_id` bigint NOT NULL COMMENT '用户主键id',
   `token` varchar(32) NOT NULL COMMENT 'token值(32位字符串)',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改時間',
