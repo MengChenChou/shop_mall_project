@@ -3,14 +3,20 @@ package com.idv.shop_mall_project.mall.user.dao.impl;
 import com.idv.shop_mall_project.core.util.PageQueryUtil;
 import com.idv.shop_mall_project.mall.entity.User;
 import com.idv.shop_mall_project.mall.user.dao.UserDao;
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
  * @author RickChou
  * @create 2023-08-20 下午 03:23
  */
+@Repository
 public class UserDaoImpl implements UserDao {
+    @PersistenceContext
+    private Session session;
     @Override
     public int deleteByPrimaryKey(Long userId) {
         return 0;
