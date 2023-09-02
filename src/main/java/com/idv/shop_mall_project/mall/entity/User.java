@@ -18,19 +18,19 @@ import java.util.Date;
 public class User {
     @Column(name = "user_id")
     private Long userId;
-
+    @Column(name = "nick_name")
     private String nickName;
-
+    @Column(name = "login_name")
     private String loginName;
-
+    @Column(name = "password_md5")
     private String passwordMd5;
-
+    @Column(name = "introduce_sign")
     private String introduceSign;
-
+    @Column(name = "is_deleted")
     private Byte isDeleted;
-
+    @Column(name = "locked_flag")
     private Byte lockedFlag;
-
+    @Column(name = "create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 }
