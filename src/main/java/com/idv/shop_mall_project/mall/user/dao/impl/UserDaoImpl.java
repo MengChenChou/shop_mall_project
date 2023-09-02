@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -19,7 +20,18 @@ public class UserDaoImpl implements UserDao {
     private Session session;
     @Override
     public int deleteByPrimaryKey(Long userId) {
-        return 0;
+        final StringBuilder hql = new StringBuilder()
+                .append("UPDATE user SET is_delete = 1");
+        if(userId != null){
+            hql.append("WHERE user_id = :userId and is_deleted = 0");
+        }
+        Query query = session.createQuery(hql.toString());
+        if(userId != null){
+            query.setParameter("userId", userId);
+        }
+
+        return query.executeUpdate();
+
     }
 
     @Override
