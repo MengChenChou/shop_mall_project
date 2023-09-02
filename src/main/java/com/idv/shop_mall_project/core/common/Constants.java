@@ -1,4 +1,4 @@
-package com.idv.shop_mall_project.core.util;
+package com.idv.shop_mall_project.core.common;
 
 /**
  * @author RickChou
