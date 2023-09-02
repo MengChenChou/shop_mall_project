@@ -36,7 +36,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int insert(User record) {
-        return 0;
+        session.persist(record);
+        return 1;
     }
 
     @Override
@@ -46,12 +47,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User selectByPrimaryKey(Long userId) {
-        return null;
+        return session.get(User.class, userId);
     }
 
     @Override
     public User selectByLoginName(String loginName) {
-        return null;
+        return session.get(User.class, loginName);
     }
 
     @Override

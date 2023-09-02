@@ -11,10 +11,12 @@ package com.idv.shop_mall_project.mall.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 @Data
 public class User {
+    @Column(name = "user_id")
     private Long userId;
 
     private String nickName;
