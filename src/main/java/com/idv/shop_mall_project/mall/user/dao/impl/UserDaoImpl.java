@@ -42,7 +42,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int insertSelective(User record) {
-        return 0;
+        session.persist(record);
+        return 1;
     }
 
     @Override
@@ -52,7 +53,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User selectByLoginName(String loginName) {
+        System.out.println("#######################################");
+        System.out.println(loginName);
+        System.out.println("#######################################");
+        // 這邊要修正
         return session.get(User.class, loginName);
+//        return null;
     }
 
     @Override
