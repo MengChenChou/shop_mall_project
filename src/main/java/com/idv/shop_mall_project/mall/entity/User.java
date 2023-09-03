@@ -11,12 +11,10 @@ package com.idv.shop_mall_project.mall.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
-
+@Entity
+@Table
 @Data
 public class User {
     @Id

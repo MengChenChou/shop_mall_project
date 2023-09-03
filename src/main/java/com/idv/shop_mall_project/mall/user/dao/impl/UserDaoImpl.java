@@ -57,7 +57,16 @@ public class UserDaoImpl implements UserDao {
         System.out.println(loginName);
         System.out.println("#######################################");
         // 這邊要修正
-        return session.get(User.class, loginName);
+        final String sql = "select * from USER "
+                + "where login_name = :loginName";
+        User user1 = session.createNativeQuery(sql, User.class)
+                .setParameter("loginName", loginName)
+                .uniqueResult();
+        System.out.println(user1);
+        return user1;
+
+
+//        return session.get(User.class, loginName);
 //        return null;
     }
 

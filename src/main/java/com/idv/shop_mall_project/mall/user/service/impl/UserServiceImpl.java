@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @author RickChou
  * @create 2023-08-20 下午 03:27
@@ -36,6 +38,13 @@ public class UserServiceImpl implements UserService {
         registerUser.setIntroduceSign(Constants.USER_INTRO);
         String passwordMD5 = MD5Util.MD5Encode(password, "UTF-8");
         registerUser.setPasswordMd5(passwordMD5);
+        byte b = 0;
+        registerUser.setIsDeleted(b);
+        registerUser.setLockedFlag(b);
+        registerUser.setCreateTime(new Date());
+        System.out.println("registerUser..........");
+        System.out.println(registerUser);
+        System.out.println("registerUser..........");
         if (UserDao.insertSelective(registerUser) > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
         }
