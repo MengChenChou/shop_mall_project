@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();
+        
     }
 
     @Override
