@@ -65,7 +65,6 @@ public class UserDaoImpl implements UserDao {
         System.out.println(user1);
         return user1;
 
-
 //        return session.get(User.class, loginName);
 //        return null;
     }
